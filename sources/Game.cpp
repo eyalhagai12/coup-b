@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdexcept>
+
 #include "Player.hpp"
 #include "Assassin.hpp"
 #include "Captain.hpp"
@@ -43,14 +45,13 @@ std::string coup::Game::turn()
 
 void coup::Game::add_player(coup::Player &player)
 {
-    player.idx = this->player_list.size();
     if (this->player_list.size() < max_players && !this->game_started)
     {
         this->player_list.push_back(&player);
     }
     else
     {
-        throw "Cannot Add More Players!\n";
+        throw std::runtime_error("Cannot Add More Players!\n");
     }
 }
 
